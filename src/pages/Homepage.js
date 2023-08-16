@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DefaultLayout from './../components/DefaultLayout';
-import axios from 'axios';
+import api from '../helper.js';
 import { Modal } from 'antd';
 import ItemList from '../components/ItemList';
 import { categories } from '../data.js';
@@ -13,7 +13,7 @@ const Homepage = () => {
   useEffect(() => {
     const getAllItems = async () => {
       try {
-        const { data } = await axios.get('/api/items/get-item');
+        const { data } = await api.get('/api/items/get-item');
         setItemsData(data);
       } catch (error) {
         console.log(error);

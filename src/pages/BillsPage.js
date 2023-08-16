@@ -3,7 +3,7 @@ import DefaultLayout from "../components/DefaultLayout";
 import { useDispatch } from "react-redux";
 import { EyeOutlined } from "@ant-design/icons";
 import { useReactToPrint } from "react-to-print";
-import axios from "axios";
+import api from "../helper.js";
 import { Modal, Button, Table } from "antd";
 import "../styles/InvoiceStyles.css";
 
@@ -19,7 +19,7 @@ const BillsPage = () => {
       dispatch({
         type: "SHOW_LOADING",
       });
-      const { data } = await axios.get("/api/bills/get-bills");
+      const { data } = await api.get("/api/bills/get-bills");
       setBillsData(data);
       dispatch({ type: "HIDE_LOADING" });
     } catch (error) {

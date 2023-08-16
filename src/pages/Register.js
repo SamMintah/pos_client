@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { Form, Input, Button } from "antd";
-import { Link, useNavigate } from "react-router-dom";
-import { message } from "antd";
-import axios from "axios";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
+import { Form, Input, Button } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import { message } from 'antd';
+import api from '../helper.js';
+import { useDispatch } from 'react-redux';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -11,24 +11,22 @@ const Register = () => {
 
   const handleSubmit = async (values) => {
     try {
-      dispatch({ type: "SHOW_LOADING" });
-
-      await axios.post("/api/users/register", values);
-
-      message.success("Registered Successfully");
-      navigate("/login");
-
-      dispatch({ type: "HIDE_LOADING" });
+      dispatch({ type: 'SHOW_LOADING' });
+      const res = await api.post('/api/users/register', values);
+      console.log('Response:', res);
+      message.success('Registered Successfully');
+      navigate('/login');
+      dispatch({ type: 'HIDE_LOADING' });
     } catch (error) {
-      dispatch({ type: "HIDE_LOADING" });
-      message.error("Something Went Wrong");
+      dispatch({ type: 'HIDE_LOADING' });
+      message.error('Something Went Wrong');
       console.log(error);
     }
   };
 
   useEffect(() => {
-    if (localStorage.getItem("auth")) {
-      navigate("/");
+    if (localStorage.getItem('auth')) {
+      navigate('/');
     }
   }, [navigate]);
 
@@ -52,7 +50,11 @@ const Register = () => {
             <p>
               Already registered? <Link to="/login">Login Here</Link>
             </p>
-            <Button className="register-button" type="primary" htmlType="submit">
+            <Button
+              className="register-button"
+              type="primary"
+              htmlType="submit"
+            >
               Register
             </Button>
           </div>

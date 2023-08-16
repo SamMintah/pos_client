@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import DefaultLayout from '../components/DefaultLayout';
 import { useDispatch } from 'react-redux';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import axios from 'axios';
+import api from '../helper.js';
 import { Modal, Button, Table, Form, Input, Select, message } from 'antd';
 import { categories } from '../data';
+
 const ItemPage = () => {
   const dispatch = useDispatch();
   const [itemsData, setItemsData] = useState([]);
@@ -15,7 +16,7 @@ const ItemPage = () => {
       dispatch({
         type: 'SHOW_LOADING'
       });
-      const { data } = await axios.get('/api/items/get-item');
+      const { data } = await api.get('/api/items/get-item');
       setItemsData(data);
       dispatch({ type: 'HIDE_LOADING' });
       console.log(data);
@@ -36,7 +37,7 @@ const ItemPage = () => {
       dispatch({
         type: 'SHOW_LOADING'
       });
-      await axios.post('/api/items/delete-item', { itemId: record._id });
+      await api.post('/api/items/delete-item', { itemId: record._id });
       message.success('Item Deleted Succesfully');
       getAllItems();
       setPopupModal(false);
@@ -90,7 +91,7 @@ const ItemPage = () => {
         dispatch({
           type: 'SHOW_LOADING'
         });
-        const res = await axios.post('/api/items/add-item', value);
+        const res = await api.post('/api/items/add-item', value);
         message.success('Item Added Succesfully');
         getAllItems();
         setPopupModal(false);
@@ -105,7 +106,7 @@ const ItemPage = () => {
         dispatch({
           type: 'SHOW_LOADING'
         });
-        await axios.put('/api/items/edit-item', {
+        await api.put('/api/items/edit-item', {
           ...value,
           itemId: editItem._id
         });

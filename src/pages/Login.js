@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { Form, Input, Button } from "antd";
-import { Link, useNavigate } from "react-router-dom";
-import { message } from "antd";
-import axios from "axios";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
+import { Form, Input, Button } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import { message } from 'antd';
+import { useDispatch } from 'react-redux';
+import api from '../helper.js';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -11,25 +11,25 @@ const Login = () => {
 
   const handleSubmit = async (values) => {
     try {
-      dispatch({ type: "SHOW_LOADING" });
+      dispatch({ type: 'SHOW_LOADING' });
 
-      const res = await axios.post("/api/users/login", values);
+      const res = await api.post('/api/users/login', values);
 
-      dispatch({ type: "HIDE_LOADING" });
-      message.success("User logged in successfully");
+      dispatch({ type: 'HIDE_LOADING' });
+      message.success('User logged in successfully');
 
-      localStorage.setItem("auth", JSON.stringify(res.data));
-      navigate("/");
+      localStorage.setItem('auth', JSON.stringify(res.data));
+      navigate('/');
     } catch (error) {
-      dispatch({ type: "HIDE_LOADING" });
-      message.error("Something Went Wrong");
+      dispatch({ type: 'HIDE_LOADING' });
+      message.error('Something Went Wrong');
       console.log(error);
     }
   };
 
   useEffect(() => {
-    if (localStorage.getItem("auth")) {
-      navigate("/");
+    if (localStorage.getItem('auth')) {
+      navigate('/');
     }
   }, [navigate]);
 
