@@ -1,5 +1,5 @@
 {
-  "proxy": "https://pos-server-v5bi.onrender.com",
+  "proxy": "https://pos-server-v5bi.onrender.com/",
   "name": "client",
   "version": "0.1.0",
   "private": true,
