@@ -3,7 +3,7 @@ import DefaultLayout from "../components/DefaultLayout";
 import { useDispatch } from "react-redux";
 import { EyeOutlined } from "@ant-design/icons";
 import { useReactToPrint } from "react-to-print";
-import api from "../helper.js";
+import api from "../helper";
 import { Modal, Button, Table } from "antd";
 import "../styles/InvoiceStyles.css";
 

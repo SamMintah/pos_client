@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DefaultLayout from "../components/DefaultLayout";
 import { useDispatch } from "react-redux";
-import api from "../helper.js";
+import api from '../helper';
 import { Table } from "antd";
 const CutomerPage = () => {
   const [billsData, setBillsData] = useState([]);

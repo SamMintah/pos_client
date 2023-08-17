@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DefaultLayout from './../components/DefaultLayout';
-import api from '../helper.js';
+import api from '../helper';
 import { Modal } from 'antd';
 import ItemList from '../components/ItemList';
 import { categories } from '../data.js';

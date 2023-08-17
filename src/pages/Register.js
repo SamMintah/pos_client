@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { message } from 'antd';
-import api from '../helper.js';
+import api from '../helper';
 import { useDispatch } from 'react-redux';
 
 const Register = () => {

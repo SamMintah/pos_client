@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import DefaultLayout from '../components/DefaultLayout';
 import { useDispatch } from 'react-redux';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import api from '../helper.js';
+import api from '../helper';
 import { Modal, Button, Table, Form, Input, Select, message } from 'antd';
 import { categories } from '../data';
 
