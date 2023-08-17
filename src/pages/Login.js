@@ -3,7 +3,7 @@ import { Form, Input, Button } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { message } from 'antd';
 import { useDispatch } from 'react-redux';
-import api from '../helper.js';
+import api from '../helper';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -13,19 +13,19 @@ const Login = () => {
     try {
       dispatch({ type: 'SHOW_LOADING' });
 
-      const res = await api.post('/api/users/login', values);
-
-      dispatch({ type: 'HIDE_LOADING' });
-      message.success('User logged in successfully');
-
-      localStorage.setItem('auth', JSON.stringify(res.data));
-      navigate('/');
+      const response = await api.post('/api/users/login', values);
+      dispatch({ type: 'HIDE_LOADING' }); 
+      message.success('User logged in successfully'); 
+      localStorage.setItem('auth', JSON.stringify(response.data));
+      
+      navigate('/'); 
     } catch (error) {
-      dispatch({ type: 'HIDE_LOADING' });
+      dispatch({ type: 'HIDE_LOADING' }); 
       message.error('Something Went Wrong');
-      console.log(error);
+      console.error('Error:', error);
     }
   };
+  
 
   useEffect(() => {
     if (localStorage.getItem('auth')) {

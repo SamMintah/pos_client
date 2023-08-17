@@ -4,10 +4,12 @@ const api = axios.create();
 
 api.interceptors.request.use(
   config => {
-    config.baseURL = process.env.BASE_URL; 
-    return config; 
+    console.log('BASE_URL:', process.env.REACT_APP_BASE_URL); // Add this line for debugging
+    config.baseURL = process.env.REACT_APP_BASE_URL;
+    return config;
   },
   error => {
+    console.log(error);
     return Promise.reject(error);
   }
 );
