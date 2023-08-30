@@ -14,18 +14,17 @@ const Login = () => {
       dispatch({ type: 'SHOW_LOADING' });
 
       const response = await api.post('/api/users/login', values);
-      dispatch({ type: 'HIDE_LOADING' }); 
-      message.success('User logged in successfully'); 
+      dispatch({ type: 'HIDE_LOADING' });
+      message.success('User logged in successfully');
       localStorage.setItem('auth', JSON.stringify(response.data));
-      
-      navigate('/'); 
+
+      navigate('/');
     } catch (error) {
-      dispatch({ type: 'HIDE_LOADING' }); 
+      dispatch({ type: 'HIDE_LOADING' });
       message.error('Something Went Wrong');
       console.error('Error:', error);
     }
   };
-  
 
   useEffect(() => {
     if (localStorage.getItem('auth')) {
@@ -37,6 +36,12 @@ const Login = () => {
     <div className="login-container">
       <div className="login-form">
         <h1 className="app-title">POS APP</h1>
+        <h3 className="page-title">Demo Login Credentials</h3>
+        <p className="credential-info">
+          <strong>userId:</strong> admin_006
+          <br />
+          <strong>Password:</strong> admin_006
+        </p>
         <h3 className="page-title">Login Page</h3>
         <Form layout="vertical" onFinish={handleSubmit}>
           <Form.Item name="userId" label="User ID">
